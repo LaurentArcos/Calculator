@@ -21,7 +21,7 @@ const Button = ({ value }) => {
   const commaClick = () => {
     setCalc({
       ...calc,
-      num: !calc.num.toString().includes(',') ? calc.num + value : calc.num,
+      num: !calc.num.toString().includes('.') ? calc.num + value : calc.num,
     })
   }
 
@@ -62,35 +62,55 @@ const Button = ({ value }) => {
     })
   }
 
-    // User clicks on equal
-    const equalsClick = () => {
-      if(calc.res && calc.num){
-      const math = (a, b, sign) => {
-        const result = {
-          '+': (a, b) => a + b,
-          '-': (a, b) => a - b,
-          '*': (a, b) => a * b,
-          '/': (a, b) => a / b,
-        }
-        return result[sign](a, b);
+  // User clicks on equal
+  const equalsClick = () => {
+    if(calc.res && calc.num){
+    const math = (a, b, sign) => {
+      const result = {
+        '+': (a, b) => a + b,
+        '-': (a, b) => a - b,
+        '*': (a, b) => a * b,
+        '/': (a, b) => a / b,
       }
-      setCalc({
-        res: math(calc.res, calc.num, calc.sign),
-        sign:'',
-        num:0,
-      })
+      return result[sign](a, b);
     }
+    setCalc({
+      res: math(calc.res, calc.num, calc.sign),
+      sign:'',
+      num:0,
+    })
     }
+  }
+
+  // User clicks on % button
+  const percentageClick = () => {
+    setCalc({
+      num: (calc.num / 100),
+      res: (calc.res / 100),
+      sign: "%"
+    })
+  }
+
+  // User clicks on +- button
+  const invertClick = () => {
+    setCalc({
+      num: calc.num ? calc.num * -1 : 0,
+      res: calc.res ? calc.res * -1 : 0,
+      sign: ""
+    })
+  }
 
   const handleButtonClick = () => {
     const results = {
-      ',': commaClick,
+      '.': commaClick,
       'C': resetClick,
       '/': signClick,
       'x': signClick,
       '-': signClick,
       '+': signClick,
       '=': equalsClick,
+      '%': percentageClick,
+      '+-': invertClick,
     }
     if(results[value]){
       return results[value]()
