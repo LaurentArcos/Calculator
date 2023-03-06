@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ButtonBox = () => {
+const ButtonBox = ({ children }) => {
   return (
-    <div>ButtonBox</div>
+    <div className='buttonbox'>{children}</div>
   )
 }
 

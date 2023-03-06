@@ -1,4 +1,6 @@
 import React from 'react'
+import Button from './components/Button'
+import ButtonBox from './components/ButtonBox'
 import Screen from './components/Screen'
 import Wrapper from './components/Wrapper'
 
@@ -15,7 +17,14 @@ const App = () => {
     <div>
       <Wrapper>
            <Screen/>
-           <
+           <ButtonBox>
+            {buttonValues.flat().map((button,i) => (         
+             <Button
+               value={button}
+               key={i}
+             />
+            ))}
+           </ButtonBox>
       </Wrapper>
     </div>
   )
