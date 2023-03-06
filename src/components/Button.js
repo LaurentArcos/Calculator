@@ -9,6 +9,9 @@ const getStyleName = button => {
     '+': 'opt',
     '-': 'opt',
     '/': 'opt',
+    "C": 'top',
+    "+-": 'top', 
+    "%": 'top',
   }
   return className[button];
 }
