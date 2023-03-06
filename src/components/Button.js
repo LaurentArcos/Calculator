@@ -53,10 +53,44 @@ const Button = ({ value }) => {
     })
   }
 
+  // User clicks on an operation button
+  const signClick = () => {
+    setCalc({
+      sign:value,
+      res: !calc.res && calc.num ? calc.num : calc.res,
+      num: 0,
+    })
+  }
+
+    // User clicks on equal
+    const equalsClick = () => {
+      if(calc.res && calc.num){
+      const math = (a, b, sign) => {
+        const result = {
+          '+': (a, b) => a + b,
+          '-': (a, b) => a - b,
+          '*': (a, b) => a * b,
+          '/': (a, b) => a / b,
+        }
+        return result[sign](a, b);
+      }
+      setCalc({
+        res: math(calc.res, calc.num, calc.sign),
+        sign:'',
+        num:0,
+      })
+    }
+    }
+
   const handleButtonClick = () => {
     const results = {
       ',': commaClick,
       'C': resetClick,
+      '/': signClick,
+      'x': signClick,
+      '-': signClick,
+      '+': signClick,
+      '=': equalsClick,
     }
     if(results[value]){
       return results[value]()
