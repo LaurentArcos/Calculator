@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CalcContext } from '../context/CalcContext'
+import { Textfit} from 'react-textfit';
 
 const Screen = () => {
+
+  const { calc } = useContext(CalcContext)
+
   return (
-    <div className='screen'>Screen</div>
+    <Textfit className='screen'>0125845145</Textfit>
   )
 }
 
