@@ -1,8 +1,18 @@
 import React from 'react'
 
+const getStyleName = name => {
+  const className = {
+    '=':'equals',
+    'x': 'opt',
+    '+': 'opt',
+    '-': 'opt',
+    '/': 'opt',
+  }
+}
+
 const Button = ({ value }) => {
   return (
-    <button className='button'>{value}</button>
+    <button className={`${getStyleName(value)} button`}>{value}</button>
   )
 }
 
