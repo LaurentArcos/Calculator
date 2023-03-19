@@ -72,7 +72,7 @@ const Button = ({ value }) => {
       const result = {
         '+': (a, b) => a + b,
         '-': (a, b) => a - b,
-        '*': (a, b) => a * b,
+        'x': (a, b) => a * b,
         '/': (a, b) => a / b,
       }
       return result[sign](a, b);
